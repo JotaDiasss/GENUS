@@ -24,7 +24,10 @@ O grupo GENUS estruturou a solução em **três frentes principais**:
 - Fortalecimento do relacionamento entre usuário e plataforma.
 
 ## Tecnologias e Ferramentas
-> (Opcional: listar tecnologias que vocês pretendem ou já utilizaram, como React, Python, APIs de recomendação, etc.)
+- Frontend: HTML, CSS, JavaScript
+- Backend: Django / Python
+- Banco de Dados: SQLite
+- Controle de Versão: Git e GitHub
 
 ## Grupo GENUS
 - Arthur Martins De Medeiros | amm4@cesar.school | Ciência da Computação | Dev Front-end
