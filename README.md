@@ -9,19 +9,13 @@ Nosso objetivo é fidelizar os consumidores do JC, proporcionando uma experiênc
 O grupo GENUS estruturou a solução em **três frentes principais**:
 
 ### 1. Personalização de Conteúdo
-- Entrega de conteúdo relevante ao consumidor através de um **sistema inteligente**.
-- Aumenta as chances de retorno do usuário ao site.
-- Foca em atender aos interesses individuais de cada leitor.
+- Entrega de conteúdo relevante ao consumidor através de um **algoritmo**.
 
 ### 2. Otimização da Interface
 - Redesenho completo da interface do site, **priorizando dispositivos móveis**.
-- Navegação fluida, intuitiva e visualmente atraente.
-- Melhora a experiência do usuário e reduz barreiras de acesso.
 
 ### 3. Engajamento e Fidelização
-- Implementação de novos recursos de forma **simples e lúdica**.
-- Estímulo à volta ao site do JC, criando uma conexão duradoura com o consumidor.
-- Fortalecimento do relacionamento entre usuário e plataforma.
+- Implementação de novos recursos de forma **simples e lúdica** por meio de uma **sequencia de leitura diaria**.
 
 ## Tecnologias e Ferramentas
 - Frontend: HTML, CSS, JavaScript
