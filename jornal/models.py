@@ -1,6 +1,7 @@
 from django.db import models
-import datetime
+
 from django.utils import timezone
+import datetime
 
 class Noticia(models.Model):
     titulo = models.CharField(max_length=200, null=False)
@@ -8,6 +9,8 @@ class Noticia(models.Model):
     detalhes = models.TextField(null=False)
     data = models.DateTimeField("Postado em: ")
     reporter = models.CharField(max_length=200, null=False)
+    genero = models.IntegerField(default=0) #a ideia eh que cada genero de noticia represente um numero
+    #exemplo politica = 0, esportes = 1, globo = 2, cultura pop = 3. E a gnt faria o algoritimo com base nisso
 
 
     def __str__(self):

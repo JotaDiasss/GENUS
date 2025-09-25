@@ -1,12 +1,12 @@
 from django.db import models
-from django.utils import datetime
+import datetime
 
 class Journal(models.Model):    
     title = models.CharField(max_length=50)
     created_by = models.CharField(max_length=200)
 
 class Entrada(models.Model):
-    journal = models.ForeignKey(Journal)
+    journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
     note = models.TextField()
     date = models.DateField()  
 
