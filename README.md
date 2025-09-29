@@ -23,6 +23,9 @@ O grupo GENUS estruturou a solução em **três frentes principais**:
 - Banco de Dados: SQLite
 - Controle de Versão: Git e GitHub
 
+## Entregas Semanais
+- [Documento de Histórias de Usuário](https://docs.google.com/document/d/1aFmJWQ57J6yf8G54d8f4gd4CUoo7hbqy8WJeeoRDG_I/edit?usp=drivesdk)
+
 ## Grupo GENUS
 - Arthur Martins De Medeiros | amm4@cesar.school | Ciência da Computação | Dev Front-end
 - Isabelle Tinoco De Albuquerque Bastos | itab@cesar.school | Design | Lider de design e design UX
