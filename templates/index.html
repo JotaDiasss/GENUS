@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <nav>
+{% extends 'base.html' %}
 
-        </nav>
-    </header>
+{% block title %}Jornal do Commércio{% endblock %}
 
-    <main>
-        {% block content %}
-            <!-- NÃO É PARA COLOCAR NADA AQUI DENTRO. Aqui fica o conteudo da pagina, crie outro arquivo para colocar o conteudo
-             no mesmo modelo do arquivo "exemplo.html" -->
-        {% endblock %}
-    </main>
+{% block content %}
+<section class="noticias-principais">
+    <h1 class="titulo-principal">Últimas Notícias</h1>
 
-    <footer>
-        
-    </footer>
-</body>
-</html>
+    <div class="lista-noticias">
+        {% for noticia in noticias %}
+            <article class="noticia-card">
+                <h2 class="noticia-card-titulo">{{ noticia.titulo }}</h2>
+                <p class="noticia-card-resumo">{{ noticia.resumo }}</p>
+                <a href="{% url 'jornal:pagina_noticias' noticia.slug %}" class="noticia-card-link">Leia mais</a>
+            </article>
+        {% empty %}
+            <p>Não há notícias disponíveis no momento.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ noticia.titulo }} | GENUS{% endblock %}
+
+{% block content %}
+<article class="noticia-detalhe">
+    <h1>{{ noticia.titulo }}</h1>
+
+    <div class="noticia-meta">
+        <span>Por: <strong>{{ noticia.reporter }}</strong></span>
+        <span>Publicado em: {{ noticia.data|date:"d/m/Y \à\s H:i" }}</span>
+    </div>
+
+    <div class="corpo-noticia">
+        {{ noticia.detalhes|linebreaks }}
+    </div>
+
+    {% if user.is_authenticated %}
+        
+        <a href="{% url 'jornal:add_aos_fav' noticia_id=noticia.id %}" class="btn-favorito">
+            Adicionar aos Favoritos
+        </a>
+        
+    {% else %}
+        <p>Faça login para adicionar aos favoritos.</p>
+    {% endif %}
+</article>
+{% endblock %}
