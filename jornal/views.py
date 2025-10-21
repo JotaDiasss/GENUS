@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Noticia, Favoritos
 from django.contrib.auth.decorators import login_required
@@ -11,8 +12,20 @@ def pagina_noticias(request, slug):
     return render(request, 'pagina_noticia.html', { 'noticia': noticia})
 
 def index(request):
-    noticias = Noticia.objects.all().order_by('-data')
-    return render(request, 'index.html', { 'noticias': noticias })
+    query = request.GET.get('q') 
+    if query:
+        noticias = Noticia.objects.filter(
+            Q(titulo__icontains=query) |
+            Q(resumo__icontains=query) |
+            Q(detalhes__icontains=query)
+        ).distinct().order_by('-data')
+    else:
+        noticias = Noticia.objects.all().order_by('-data')
+    contexto = {
+        'noticias': noticias,
+        'query': query,
+    }
+    return render(request, 'index.html', contexto)
 
 @login_required
 def ver_favoritos(request):

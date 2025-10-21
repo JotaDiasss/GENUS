@@ -1,20 +1,33 @@
 {% extends 'base.html' %}
-
-{% block title %}Jornal do Commércio{% endblock %}
-
+{% block title %}
+    {% if query %}
+        Resultados para: {{ query }}
+    {% else %}
+        Jornal do Commércio
+    {% endif %}
+{% endblock %}
 {% block content %}
 <section class="noticias-principais">
-    <h1 class="titulo-principal">Últimas Notícias</h1>
-
+    {% if query %}
+        <h1 class="titulo-principal">Resultados da pesquisa para: "{{ query }}"</h1>
+    {% else %}
+        <h1 class="titulo-principal">Últimas Notícias</h1>
+    {% endif %}
     <div class="lista-noticias">
         {% for noticia in noticias %}
             <article class="noticia-card">
-                <h2 class="noticia-card-titulo">{{ noticia.titulo }}</h2>
+                <h2 class="noticia-card-titulo">
+                    <a href="{% url 'jornal:pagina_noticias' noticia.slug %}">{{ noticia.titulo }}</a>
+                </h2>
                 <p class="noticia-card-resumo">{{ noticia.resumo }}</p>
                 <a href="{% url 'jornal:pagina_noticias' noticia.slug %}" class="noticia-card-link">Leia mais</a>
             </article>
         {% empty %}
-            <p>Não há notícias disponíveis no momento.</p>
+            {% if query %}
+                <p>Nenhuma notícia foi encontrada para o termo "{{ query }}".</p>
+            {% else %}
+                <p>Não há notícias disponíveis no momento.</p>
+            {% endif %}
         {% endfor %}
     </div>
 </section>

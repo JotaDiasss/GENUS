@@ -17,6 +17,10 @@
             <li><a href="#">Serviços</a></li>
             <li><a href="#">Contato</a></li>
         </ul>
+        <form class="form-pesquisa" action="{% url 'jornal:index' %}" method="GET" style="display: inline-flex; margin-left: 20px;">
+                <input type="search" name="q" placeholder="Pesquisar notícias...">
+                <button type="submit" style="margin-left: 5px;">Buscar</button>
+        </form>
     </header>
 
     {% block content %}{% endblock %}
