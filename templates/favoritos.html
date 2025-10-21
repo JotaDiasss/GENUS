@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Notícias Favoritas
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>Notícias Favoritas</h1>
+
+        {% for noticia in favoritos %}
+            <article class="noticia">
+                <h2>
+                    <a href="{% url 'jornal:pagina_noticias' slug=noticia.slug %}">
+                        {{ noticia.titulo }}
+                    </a>
+                </h2>
+                <p>{{ noticia.data_publicacao }}</p>
+
+                <form action="{% url 'jornal:remover_dos_favoritos' noticia_id=noticia.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Remover dos Favoritos</button>
+                </form>
+            </article>
+        {% empty %}
+            <p>Você ainda não adicionou nenhuma notícia aos favoritos.</p>
+        {% endfor %}
+    </section>
+{% endblock content %}

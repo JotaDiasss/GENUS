@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div style="width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+
+    <h2 style="text-align: center;">Login</h2>
+    <p style="text-align: center;">Por favor, entre com suas credenciais para ver seus favoritos.</p>
+
+    {% if form.errors %}
+        <p style="color: red; text-align: center;">Seu usuário ou senha está incorreto. Tente novamente.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <input type="hidden" name="next" value="{{ next }}" /> 
+        
+        <button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Entrar
+        </button>
+    </form>
+    <hr style="margin-top: 20px;">
+    <p style="text-align: center;">
+        Não tem uma conta? 
+    <a href="{% url 'register' %}">Registre-se aqui</a>.
+    </p>
+</div>
+{% endblock %}

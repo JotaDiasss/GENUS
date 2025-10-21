@@ -1,6 +1,178 @@
-* {
-    padding: 0;
+body {
     margin: 0;
-    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+.navbar {
+    background-color: #000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hero p {
+    color: gray;
+    margin-top: 10px;
+}
+
+.hero .btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #111;
+    color: #fff;
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+footer div {
+    flex: 1;
+    min-width: 200px;
+    margin: 0 20px;
+}
+
+footer h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+footer p, footer a {
+    color: #aaa;
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 14px;
+    color: #888;
+}
+
+.titulo-principal {
+  text-align: center;
+}
+
+.noticia-detalhe {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.noticia-detalhe h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.noticia-meta {
+    color: #666; 
+    font-size: 0.9em; 
+    margin-bottom: 25px; 
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.noticia-meta span {
+    margin-right: 20px;
+}
+
+.corpo-noticia {
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.noticias-principais .titulo-principal {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+}
+
+.lista-noticias {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.noticia-card {
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.noticia-card:hover {
+    transform: translateY(-5px);
+}
+
+.noticia-card-titulo {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    color: #f5f5f5;
+}
+
+.noticia-card-resumo {
+    color: #ccc;
+    line-height: 1.6; 
+}
+
+.noticia-card-link {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #0d6efd;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.noticia-card-link:hover {
+    background-color: #0b5ed7;
+}
