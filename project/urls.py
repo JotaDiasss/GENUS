@@ -16,8 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from jornal import jornal_views
-
+from jornal import views as jornal_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/register/', jornal_views.register, name='register'),
