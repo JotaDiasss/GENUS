@@ -21,4 +21,5 @@ from jornal import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('jornal.urls', namespace='jornal')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
