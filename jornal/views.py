@@ -2,6 +2,8 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Noticia, Favoritos
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 def lista_de_noticias(request):
     noticias = Noticia.objects.all().order_by('-data')
@@ -54,4 +56,16 @@ def remover_dos_favoritos(request, noticia_id):
             pass  # O item não está na lista, não faz nada
 
     return redirect('jornal:favoritos')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'registration/register.html', {'form': form})
 # Create your views here.
