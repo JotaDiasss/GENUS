@@ -1,0 +1,1 @@
+// aqui ficaria o script do exemplo.html

@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <nav>
+{% extends 'index.html' %}
 
-        </nav>
-    </header>
+{% block title %}
+    Início
+{% endblock %}
 
-    <main>
-        {% block content %}
-            <!-- NÃO É PARA COLOCAR NADA AQUI DENTRO. Aqui fica o conteudo da pagina, crie outro arquivo para colocar o conteudo
-             no mesmo modelo do arquivo "exemplo.html" -->
-        {% endblock %}
-    </main>
-
-    <footer>
-        
-    </footer>
-</body>
-</html>
+{% block content %}
+    <!-- aqui fica o conteudo da pagina inicial -->
+{% endblock %}
