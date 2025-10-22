@@ -1,33 +1,55 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Noticia, Favoritos
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.conf import settings
 
-def lista_de_noticias(request):
-    noticias = Noticia.objects.all().order_by('-data')
-    return render(request, 'index.html', { 'noticias': noticias})
+from .models import Noticia, Favoritos
+import requests
 
-def pagina_noticias(request, slug):
-    noticia = Noticia.objects.get(slug=slug)
-    return render(request, 'pagina_noticia.html', { 'noticia': noticia})
 
 def index(request):
     query = request.GET.get('q') 
+    
     if query:
-        noticias = Noticia.objects.filter(
+        noticias_locais = Noticia.objects.filter(
             Q(titulo__icontains=query) |
             Q(resumo__icontains=query) |
             Q(detalhes__icontains=query)
         ).distinct().order_by('-data')
     else:
-        noticias = Noticia.objects.all().order_by('-data')
+        noticias_locais = Noticia.objects.all().order_by('-data')
+
+    artigos_api = []
+    try:
+        api_key = settings.NEWS_API_KEY 
+        url = f'https://newsapi.org/v2/everything?q=brasil&language=pt&pageSize=6&sortBy=publishedAt&apiKey={api_key}'
+        
+        response = requests.get(url)
+        
+        if response.status_code == 200:
+            dados = response.json()
+            artigos_api = dados.get('articles', [])
+        
+    except requests.RequestException:
+        pass 
+    except AttributeError:
+        pass
+
     contexto = {
-        'noticias': noticias,
+        'noticias': noticias_locais,
+        'artigos_api': artigos_api,
         'query': query,
     }
+    
     return render(request, 'index.html', contexto)
+
+
+def pagina_noticias(request, slug):
+    noticia = Noticia.objects.get(slug=slug)
+    return render(request, 'pagina_noticia.html', { 'noticia': noticia})
+
 
 @login_required
 def ver_favoritos(request):
@@ -53,8 +75,7 @@ def remover_dos_favoritos(request, noticia_id):
             favoritos_itens = Favoritos.objects.get(usuario=request.user, noticia=noticia)
             favoritos_itens.delete()
         except Favoritos.DoesNotExist:
-            pass  # O item não está na lista, não faz nada
-
+            pass 
     return redirect('jornal:favoritos')
 
 def register(request):
@@ -68,4 +89,7 @@ def register(request):
         form = UserCreationForm()
     
     return render(request, 'registration/register.html', {'form': form})
-# Create your views here.
+
+def lista_de_noticias(request):
+    noticias = Noticia.objects.all().order_by('-data')
+    return render(request, 'index.html', { 'noticias': noticias})
