@@ -1,35 +1,63 @@
 {% extends 'layout.html' %}
+{% load static %}
+
 {% block title %}
-    {% if query %}
-        Resultados para: {{ query }}
-    {% else %}
-        Jornal do Commércio
-    {% endif %}
+    {% if query %}
+        Resultados para: {{ query }}
+    {% else %}
+        Jornal do Commércio
+    {% endif %}
 {% endblock %}
+
 {% block content %}
-<section class="noticias-principais">
-    {% if query %}
-        <h1 class="titulo-principal">Resultados da pesquisa para: "{{ query }}"</h1>
-    {% else %}
-        <h1 class="titulo-principal">Últimas Notícias</h1>
-    {% endif %}
-    <div class="lista-noticias">
-        {% for noticia in noticias %}
-            <article class="noticia-card">
-                <h2 class="noticia-card-titulo">
-                    <a href="{% url 'jornal:pagina_noticias' noticia.slug %}">{{ noticia.titulo }}</a>
-                </h2>
-                <p class="noticia-card-resumo">{{ noticia.resumo }}</p>
-                <a href="{% url 'jornal:pagina_noticias' noticia.slug %}" class="noticia-card-link">Leia mais</a>
-            </article>
-        {% empty %}
-            {% if query %}
-                <p>Nenhuma notícia foi encontrada para o termo "{{ query }}".</p>
-            {% else %}
-                <p>Não há notícias disponíveis no momento.</p>
-            {% endif %}
-        {% endfor %}
-    </div>
+
+<section class="content-section" style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+    <div class="section-header">
+        <h2 class="section-title" style="color: #f0f0f0;">Destaques do Brasil</h2>
+    </div>
+    <div class="card-container">
+        {% for artigo in artigos_api %}
+            <a href="{{ artigo.url }}" target="_blank" rel="noopener noreferrer" class="card-link">
+                <div class="card">
+                    {% if artigo.urlToImage %}
+                        <img src="{{ artigo.urlToImage }}" alt="{{ artigo.title }}">
+                    {% else %}
+                        <img src="{% static 'images/default-news.png' %}" alt="Notícia sem imagem"> 
+                    {% endif %}
+                    <div class="card-info">
+                        <div class="card-title">{{ artigo.title }}</div>
+                        <div class="card-subtitle">{{ artigo.source.name }}</div>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p style="color: #aaa;">Não foi possível carregar os destaques da API no momento.</p>
+        {% endfor %}
+    </div>
 </section>
->>>>>>> 95c1fbd8299ea823e0e5eb1c59d955160977c3ba
+
+<section class="noticias-principais">
+    {% if query %}
+        <h1 class="titulo-principal">Resultados da pesquisa para: "{{ query }}"</h1>
+    {% else %}
+        <h1 class="titulo-principal">Últimas Notícias do Site</h1>
+    {% endif %}
+    <div class="lista-noticias">
+        {% for noticia in noticias %}
+            <article class="noticia-card">
+                <h2 class="noticia-card-titulo">
+                    <a href="{% url 'jornal:pagina_noticias' noticia.slug %}">{{ noticia.titulo }}</a>
+                </h2>
+                <p class="noticia-card-resumo">{{ noticia.resumo }}</p>
+                <a href="{% url 'jornal:pagina_noticias' noticia.slug %}" class="noticia-card-link">Leia mais</a>
+            </article>
+        {% empty %}
+            {% if query %}
+                <p>Nenhuma notícia foi encontrada para o termo "{{ query }}".</p>
+            {% else %}
+                <p>Não há notícias disponíveis no momento.</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}
