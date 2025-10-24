@@ -8,19 +8,45 @@
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">Logo</div>
-        <ul class="menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="{% url 'jornal:favoritos' %}">Favoritos</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
-        </ul>
-        <form class="form-pesquisa" action="{% url 'jornal:index' %}" method="GET">
-                <input type="search" name="q" placeholder="Pesquisar notícias...">
-                <button type="submit">Buscar</button>
-        </form>
+    <header>
+        <nav class="uol-nav">
+            <a href="https://www.uol.com.br/"><img src="../assets/logo_uol.svg" alt="logo-uol"></a>
+        </nav>
+        <nav class="jc-nav">
+            <div>
+                <a href="/"><img src="../assets/logo_jc.svg" alt="logo-jc"></a>
+            </div>
+            <div>
+                <form class="pesquisar" id="pesquisar" action="{% url 'jornal:index' %}" method="GET" >
+                        <input type="search" class="caixa-pesquisar" name="caixa-pesquisar" placeholder="Pesquise aqui">
+                        <button type="submit" class="lupa"><img src="" alt="buscar"></button>
+                </form>
+                <div class="menu" id="menu">
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div>
+                        <a href=""></a>
+                        <section>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                {% if user.is_authenticated %}
+                    <i class="user-icon"><a href="./perfil-usuario"><img src="" alt=""></a></i>
+                {% else %}
+                    <i class="no-user-icon"><a href="./registration/login.html"></a></i>
+                {% endif %}
+            </div>
+        </nav>
+
     </header>
 
     {% block content %}
